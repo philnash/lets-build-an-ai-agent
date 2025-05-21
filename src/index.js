@@ -2,7 +2,7 @@ import { stdin as input, stdout as output } from "node:process";
 import { createInterface } from "node:readline/promises";
 
 import { History } from "./utils/history.js";
-import { Agent } from "./echo_agent.js";
+import { Agent } from "./basic_agent.js";
 import { mcpClients } from "./tools/mcp.js";
 
 const agent = new Agent();
