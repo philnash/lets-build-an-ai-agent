@@ -1,7 +1,8 @@
 import { GoogleGenAI } from "@google/genai";
 import { env } from "node:process";
 
-export function mergeOptions(options) {
+export function mergeOptions(options = {}) {
+  options.config = options.config || {};
   return {
     model: options.model || "gemini-2.0-flash",
     config: {
