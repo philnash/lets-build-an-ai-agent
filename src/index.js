@@ -2,10 +2,31 @@ import { stdin as input, stdout as output } from "node:process";
 import { createInterface } from "node:readline/promises";
 
 import { History } from "./utils/history.js";
-import { Agent } from "./chat_agent.js";
+import { Agent } from "./agent_agent.js";
+import { dateFunctionDeclaration, date } from "./tools/dateTool.js";
+import { researchTool, researchToolDeclaration } from "./tools/agent_tools.js";
+import {
+  philNashBlogPosts,
+  philNashBlogPostsDeclaration,
+} from "./tools/rag.js";
 import { mcpClients } from "./tools/mcp.js";
 
-const agent = new Agent();
+const agent = new Agent(
+  {
+    config: {
+      tools: [
+        {
+          functionDeclarations: [
+            philNashBlogPostsDeclaration,
+            dateFunctionDeclaration,
+            researchToolDeclaration,
+          ],
+        },
+      ],
+    },
+  },
+  { date, philNashBlogPosts, researchTool }
+);
 
 export async function main() {
   const history = new History();
